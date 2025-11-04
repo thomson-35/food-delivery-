@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QuickBite | Food Delivery</title>
+</head>
+<body>
+  <h1>🍕 Welcome to QuickBite Food Delivery</h1>
+  <button onclick="loadMenu()">Show Menu</button>
+  <ul id="menuList"></ul>
+
+  <script>
+    async function loadMenu() {
+      const res = await fetch("/menu");
+      const menu = await res.json();
+      const list = document.getElementById("menuList");
+      list.innerHTML = "";
+      menu.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - ₹${item.price}`;
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
